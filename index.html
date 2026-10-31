@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Level Premium Video Platform (Weekly Routing Framework)</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #0b0b0b; color: #ffffff; padding: 40px; text-align: center; user-select: none; }
+        .container { max-width: 800px; margin: 0 auto; background: #141414; padding: 30px; border-radius: 12px; border: 1px solid #222; position: relative; }
+        h2 { color: #00dfa2; margin-bottom: 5px; }
+        p { color: #666; font-size: 14px; margin-bottom: 25px; }
+        
+        .controls-row { margin-bottom: 20px; display: flex; justify-content: center; gap: 15px; align-items: center; }
+        label { font-size: 14px; color: #aaa; }
+        select { background: #222; color: #fff; border: 1px solid #444; padding: 10px 15px; border-radius: 6px; font-size: 14px; cursor: pointer; outline: none; }
+        
+        .player-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; overflow: hidden; margin-bottom: 20px; border: 1px solid #333; }
+        
+        .dynamic-watermark {
+            position: absolute; color: rgba(255, 255, 255, 0.15); font-weight: bold; font-size: 15px;
+            pointer-events: none; white-space: nowrap; transition: all 0.5s ease-in-out; z-index: 9999; display: none;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        
+        .btn { background-color: #00dfa2; color: #000; border: none; padding: 12px 28px; font-size: 15px; font-weight: bold; border-radius: 6px; cursor: pointer; }
+        .log-box { text-align: left; background: #050505; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 13px; color: #00ff00; max-height: 120px; overflow-y: auto; margin-top: 20px; border: 1px solid #111; }
+    </style>
+</head>
+<body oncontextmenu="return false;" onkeydown="return handleKeyDefenses(event);">
+
+<div class="container">
+    <h2>A/L Tutor Premium Streaming Sandbox</h2>
+    <p>Phase 4: Granular Weekly Video Access Authorization Dashboard</p>
+    
+    <!-- NEW SECTION: Selection Dropdown Menu for Weeks -->
+    <div class="controls-row">
+        <label for="week-select">Select Lesson Target:</label>
+        <select id="week-select">
+            <option value="1">Month Content - Week 1 Lecture (Unlocked)</option>
+            <option value="2">Month Content - Week 2 Lecture (Unlocked)</option>
+            <option value="3">Month Content - Week 3 Lecture (Locked - Unpaid)</option>
+            <option value="4">Month Content - Week 4 Lecture (Locked - Unpaid)</option>
+        </select>
+    </div>
+    
+    <div class="player-wrapper" id="video-container">
+        <div class="dynamic-watermark" id="watermark-overlay">ID: USER | MOBILE: 07X-XXXXXXX</div>
+        <div style="padding: 20%; color: #444;" id="status-text">[ Vault Storage Standby - Secure Cloud Session Token Required ]</div>
+    </div>
+
+    <button class="btn" onclick="requestSecurePlayback()">Simulate Verified Student Playback</button>
+
+    <div class="log-box" id="logger">
+        &gt; Security layer context active. Hardware fingerprinting system monitoring...
+    </div>
+</div>
+
+<script>
+    let watermarkInterval;
+
+    function logEvent(text) {
+        const box = document.getElementById('logger');
+        box.innerHTML += "<br>&gt; " + text;
+        box.scrollTop = box.scrollHeight;
+    }
+
+    function handleKeyDefenses(e) {
+        if (e.key === "PrintScreen" || (e.ctrlKey && e.key === "p") || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+            logEvent("<span style='color: red;'>ALERT: Unauthorized screen print interaction intercepted and blocked!</span>");
+            e.preventDefault();
+            return false;
+        }
+    }
+
+    function moveWatermark() {
+        const overlay = document.getElementById('watermark-overlay');
+        const container = document.getElementById('video-container');
+        
+        const maxX = container.clientWidth - overlay.clientWidth - 20;
+        const maxY = container.clientHeight - overlay.clientHeight - 20;
+        
+        overlay.style.left = Math.max(10, Math.floor(Math.random() * maxX)) + 'px';
+        overlay.style.top = Math.max(10, Math.floor(Math.random() * maxY)) + 'px';
+    }
+
+    function requestSecurePlayback() {
+        // Clear any old elements or playback states if they exist
+        const oldVideo = document.querySelector('video');
+        if (oldVideo) oldVideo.remove();
+        clearInterval(watermarkInterval);
+        document.getElementById('watermark-overlay').style.display = 'none';
+        document.getElementById('status-text').style.display = 'block';
+
+        const selectedWeek = parseInt(document.getElementById('week-select').value);
+        logEvent(`Student initiated content request for: 'AL_Physics_Week${selectedWeek}.mp4'...`);
+        logEvent(`Pinging local AWS Lambda authorizer... validating payment status for Week ${selectedWeek}...`);
+        
+        setTimeout(() => {
+            // Simulated Response matching our modified python script conditions
+            if (selectedWeek === 3 || selectedWeek === 4) {
+                logEvent(`<span style='color: red;'>Status 403 Forbidden: Access Denied. You have not unlocked access for Week ${selectedWeek} content yet!</span>`);
+                document.getElementById('status-text').innerHTML = `<span style='color: #ff3333;'>[ Access Denied: Week ${selectedWeek} Tuition Fee Ledger Unpaid ]</span>`;
+                return;
+            }
+
+            logEvent(`Status 200: Access Token Generated for Week ${selectedWeek}.`);
+            logEvent("<span style='color: #00dfa2;'>Dynamic Tracer Watermarking active: Week parameters bound to layout canvas.</span>");
+            
+            const watermarkText = `ID: Lahiru_Student_9921 | WEEK ${selectedWeek} | MOBILE: +94 77 123 4567`;
+            
+            const overlay = document.getElementById('watermark-overlay');
+            overlay.innerText = watermarkText;
+            overlay.style.display = 'block';
+            moveWatermark();
+            
+            watermarkInterval = setInterval(moveWatermark, 3000);
+
+            document.getElementById('status-text').style.display = 'none';
+            
+            const videoElement = document.createElement('video');
+            videoElement.src = "https://w3schools.com";
+            videoElement.width = "100%";
+            videoElement.height = "100%";
+            videoElement.controls = true;
+            videoElement.autoplay = true;
+            videoElement.style.position = 'absolute';
+            videoElement.style.top = '0';
+            videoElement.style.left = '0';
+            videoElement.style.zIndex = '1';
+            
+            document.getElementById('video-container').appendChild(videoElement);
+        }, 1200);
+    }
+</script>
+
+</body>
+</html>

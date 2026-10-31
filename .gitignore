@@ -1,0 +1,8 @@
+.terraform/
+.terraform.lock.hcl
+terraform.exe
+terraform.tfstate
+terraform.tfstate.backup
+auth_stream.zip
+output.json
+terraform_1.9.8_windows_amd64.zip

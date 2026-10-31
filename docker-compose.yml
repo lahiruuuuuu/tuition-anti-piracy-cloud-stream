@@ -1,0 +1,14 @@
+services:
+  localstack:
+    container_name: localstack_main
+    image: localstack/localstack:3.8
+    ports:
+      - "127.0.0.1:4566:4566"
+    environment:
+      - SERVICES=s3,lambda,cloudfront,iam
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "//var/run/docker.sock:/var/run/docker.sock"
+
+
+
